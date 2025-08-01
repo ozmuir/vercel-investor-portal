@@ -1,0 +1,44 @@
+:root {
+  --eiv-blue: #26427e;
+  --eiv-pink: #ff0088;
+  --eiv-purple: #7766ff;
+  --eiv-cyan: #00ffee;
+  --fx_duration: .5s;
+  --fx_duration_1_2: .25s;
+
+  // --font_size_factor: 0.75;
+  // font-size: calc(var(--font_size_factor) * (1vw + 1vh));
+
+  line-height: 1.5;
+
+  scroll-behavior: smooth;
+
+  --viewport-padding-vertical: 1rem;
+  --viewport-padding-horizontal: 1rem;
+
+  --logo-size: 3rem;
+}
+// @media screen and (max-width: 768px) {
+//   :root {
+//     --font_size_factor: 1;
+//   }
+// }
+body {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+svg,
+symbol {
+  overflow: visible !important;
+}
+use {
+  transform-origin: center;
+  transform-box: fill-box;
+}

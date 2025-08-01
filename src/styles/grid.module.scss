@@ -1,0 +1,100 @@
+.grid {
+  align-self: stretch;
+  flex-grow: 1;
+
+  display: grid;
+  /* Other column width configurations can glitch on lower resolutions */
+  --side: minmax(8rem, 1fr); /* min width needed to prevent logo collapsing */
+  grid-template-columns: var(--side) minmax(0, 960px) var(--side);
+  grid-template-rows: auto 1fr auto;
+  --first: 1;
+  --middle: 2;
+  --last: 3;
+}
+
+.cell {
+  // prevents overflow
+  width: 100%;
+  padding: var(--viewport-padding-vertical) var(--viewport-padding-horizontal);
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+}
+.main {
+  width: 100%;
+}
+
+.y_start {
+  align-self: start;
+}
+.y_mid {
+  align-self: center;
+}
+.y_end {
+  align-self: end;
+}
+
+.x_start {
+  justify-self: flex-start;
+  text-align: left;
+}
+
+.x_mid {
+  text-align: center;
+}
+
+.x_end {
+  justify-self: flex-end;
+  text-align: right;
+}
+
+.y_start.x_start {
+  grid-row: var(--first);
+  grid-column: var(--first);
+}
+
+.y_start.x_mid {
+  grid-row: var(--first);
+  grid-column: var(--middle);
+}
+
+.y_start.x_end {
+  grid-row: var(--first);
+  grid-column: var(--last);
+}
+
+.y_mid.x_start {
+  grid-row: var(--middle);
+  grid-column: var(--first);
+}
+
+.y_mid.x_mid {
+  grid-row: var(--middle);
+  grid-column: var(--middle);
+}
+
+@media screen and (max-width: 512px) {
+  .y_mid.x_mid {
+    grid-column: var(--first) / span var(--last);
+  }
+}
+
+.y_mid.x_end {
+  grid-row: var(--middle);
+  grid-column: var(--last);
+}
+
+.y_end.x_start {
+  grid-row: var(--last);
+  grid-column: var(--first);
+}
+
+.y_end.x_mid {
+  grid-row: var(--last);
+  grid-column: var(--middle);
+}
+
+.y_end.x_end {
+  grid-row: var(--last);
+  grid-column: var(--last);
+}

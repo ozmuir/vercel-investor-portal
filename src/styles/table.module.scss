@@ -1,0 +1,90 @@
+.table_container {
+  // STRETCH TO VEWPORT WIDTH
+  display: inline-block; // shrink-wrap
+  min-width: 100%;
+  // max-width: calc(100vw - 2 * var(--viewport-padding-horizontal));
+  max-width: calc(100vw - 4px);
+  align-self: flex-start; // unconstrain its width if it is a direct child of a flex parent with align-items: stretch
+  position: relative;
+  left: 50%; // Shift -> 50% of the parent width
+  transform: translateX(-50%); // Shift <- 50% of the own width
+  overflow-x: auto; // scroll wnen even the viewport space is constraining
+}
+
+.table[class] {
+  // table-layout: fixed;
+  background: transparent;
+  border-bottom: 0;
+}
+
+.table th[class],
+.table td[class]::before {
+  text-transform: uppercase;
+  white-space: normal;
+}
+
+.table th {
+  vertical-align: middle;
+}
+.table td {
+  vertical-align: top;
+}
+
+.table button {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block !important;
+    --padding: 1rem;
+    --padding2: calc(0.75 * var(--padding)) var(--padding);
+  }
+
+  .table tr::after {
+    content: " ";
+    display: block;
+    height: 1rem;
+  }
+
+  /*
+  tr + tr {
+    margin-top: calc(2 * var(--padding)) !important;
+  }
+  */
+  .table td[class] {
+    padding: var(--padding2);
+  }
+  .table td[data-label]:not([data-label=""]) {
+    position: relative;
+    padding-top: calc(3 * var(--padding)) !important;
+  }
+  .table td:not([data-label]) {
+  }
+  .table td[data-label]:not([data-label=""])::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45%;
+    padding: var(--padding2);
+    white-space: nowrap;
+    font-weight: bold;
+    content: attr(data-label);
+  }
+  .table thead {
+    display: none !important;
+  }
+}
+
+.transparent[class] {
+  background: transparent;
+}
+.transparent[class] td {
+  background: transparent;
+  vertical-align: top;
+}

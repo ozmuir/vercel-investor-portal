@@ -1,0 +1,22 @@
+.items-stretch {
+  align-items: stretch;
+}
+
+.justify-center {
+  justify-self: center;
+}
+
+.margin-auto {
+  margin: auto;
+}
+.self-center {
+  // Universal
+  margin: auto;
+
+  // Works in grid layouts and block-level layouts (experimental)
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self
+  // justify-self: center;
+
+  // Works in flexboxes with flex-direction: column;
+  // align-self: center;
+}

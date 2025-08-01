@@ -1,0 +1,98 @@
+{
+  "dealmaker": "Dealmaker",
+  "action": {
+    "confirm": "Confirm",
+    "email_confirmation": "Send confirmation link",
+    "email_confirmations": "Send confirmation links",
+    "request_a_new": "Create a support request",
+    "request_the_new": "Create the support request",
+    "request_update": "Update the support request",
+    "account_log_in": "Send login link",
+    "account_delete": "Delete your account",
+    "upload_files": "Upload documents",
+    "upload_the_files": "Upload the documents"
+  },
+  "field_label": {
+    "delete_confirm": "Type DELETE to confirm your intent",
+    "email": "Email",
+    "new_email": "New email"
+  },
+  "field_hint": {
+    "email": "Enter your email",
+    "new_email": "Enter a new email"
+  },
+  "heading": {
+    "investors_portal": "Investor Portal",
+    "investment_list": "Your Investments",
+    "investor_documents": "Investor Documents",
+    "investor_login": "Investor Login",
+    "more_actions": "Actions",
+    "account": "Account Management",
+    "request_list": "Support Requests",
+    "updates": "Updates"
+  },
+  "empty": {
+    "documents": "No documents loaded yet.",
+    "investments": "No investments found.",
+    "requests": "No requests created yet."
+  },
+  "toast": {
+    "email_confirmation": "Check your email.",
+    "account_signed_out": "You’re now logged out.",
+    "account_deleted": "Your account has been deleted."
+  },
+  "account_login_intro": "Please enter the email you used to invest. We’ll send a login link to that address.",
+  "progress": {
+    "emailing_confirmation": "Sending you a confirmation email…",
+    "emailing_verification": "Sending you a verification email…",
+    "loading": "Loading…"
+  },
+  "feedback": {
+    "log_in": {
+      "email_sent": "We've emailed you a login link. It’s valid for 1 hour."
+    },
+    "email_change": {
+      "email_confirm_old_and_new": "Please click the links sent to both your old and new email addresses to confirm the change.",
+      "email_confirm_new_only": "Please click the confirmation link sent to your new email address."
+    },
+    "email_invalid": "Invalid email format.",
+    "email_required": "Email address is required."
+  },
+  "investment": {
+    "name": "Name / Issue",
+    "holder_email": "Holder Email",
+    "holder_phone": "Holder Phone",
+    "holder_name": "Holder Name",
+    "holder_address": "Holder Address",
+    "amount_paid": "Value Subscribed",
+    "amount_purchased": "# of Securities Subscribed"
+  },
+  "navigation": {
+    "back_home": "Return Home",
+    "home": "Home",
+    "investors": "Investors"
+  },
+  "meta": {
+    "title": {
+      "_suffix": "Ei.Ventures",
+      "home": "Emotional Intelligence Ventures",
+      "investor_account": "Investor Account",
+      "investor_investments": "Investments",
+      "investor_documents": "Investor Documents",
+      "investor_documents_upload": "Upload Investor Documents",
+      "investor_login": "Investor Login",
+      "investors_portal": "Investor Portal",
+      "investor_requests": "Support Requests",
+      "investor_requests_new": "Create a Support Request",
+      "investor_requests_edit": "Edit the Support Request",
+      "not_found": "Not Found"
+    }
+  },
+  "menu": {
+    "account": "Account",
+    "documents": "Documents",
+    "investments": "Investments",
+    "requests": "Requests",
+    "sign_out": "Log Out"
+  }
+}

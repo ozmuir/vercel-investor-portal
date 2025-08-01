@@ -1,0 +1,99 @@
+.block[class] {
+  display: block;
+}
+
+.inline[class] {
+  display: inline;
+}
+.inline + .inline {
+  margin-left: 0.33em;
+}
+.valign-middle {
+  vertical-align: middle;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ellipsis.inline {
+  display: inline-block;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+// page column - only use in views
+.width-60rem {
+  max-width: 60rem;
+  width: 100%;
+}
+
+// page column - only use in views
+.width-30rem {
+  max-width: 30rem;
+  width: 100%;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+.gap-2 {
+  gap: 2rem;
+}
+.gap-4 {
+  gap: 4rem;
+}
+
+// an element layout
+.flex-line {
+  display: flex;
+  flex-direction: row;
+  gap: 0.33em;
+  align-items: center;
+}
+
+// a page layout
+.layout {
+  overflow: hidden; // helps against ZOOM-OUT-like "gap" on mobile when using elements that overflow the viewport
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  @extend .flex-col;
+  @extend .flex-center;
+}
+
+// a page layout
+.view-30rem {
+  @extend .width-30rem;
+  @extend .flex-col;
+  align-items: center;
+  @extend .gap-1;
+  margin: auto;
+}
+
+.view-align-left {
+  text-align: start;
+}
+
+// .view-align-left .n-button {
+//   align-self: start;
+// }

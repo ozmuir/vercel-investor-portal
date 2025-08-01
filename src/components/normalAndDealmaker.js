@@ -1,5 +1,6 @@
 import { NTooltip } from "naive-ui";
 import { h } from "vue";
+import dealmakerIconSrc from "../assets/dealmaker-icon.svg";
 
 export const normalAndDealmaker = ([item1, item2]) =>
   h(
@@ -10,7 +11,7 @@ export const normalAndDealmaker = ([item1, item2]) =>
       [
         item2,
         {
-          src: "/dealmaker-icon.svg",
+          src: dealmakerIconSrc,
           width: "128",
           height: "128",
           alt: "DealMaker Logo",

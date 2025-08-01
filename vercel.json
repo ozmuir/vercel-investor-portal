@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/investor/:file(.*\\..*)",
+      "destination": "https://vercel-investor-portal.vercel.app/:file"
+    }
+  ]
+}

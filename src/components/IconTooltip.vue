@@ -18,6 +18,7 @@ defineProps({
 import { NButton, NTooltip } from "naive-ui";
 
 /*
+import dealmakerIconSrc from "../assets/dealmaker-icon.svg";
 
 <IconTooltip
   text="This information was sourced from DealMaker and can be inaccurate."

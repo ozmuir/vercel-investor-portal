@@ -5,7 +5,7 @@ import routes from "../routing/routes";
 export * from "../routing/routes";
 
 const router = createRouter({
-  history: createHistory(),
+  history: createHistory(process.env.BASE_URL),
   routes: routes,
 });
 

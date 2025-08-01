@@ -5,9 +5,6 @@ import { ROUTE_INVESTOR } from "../routing";
 import { server } from "../actions/api.js";
 import { supabase } from "../actions/supabase";
 
-const BASE_URL = process.env.VUE_APP_BASE_URL;
-if (!BASE_URL) throw new Error("VUE_APP_BASE_URL not set.");
-
 // By default, email updates sends a confirmation link to both the user's current
 // and new email. To only send a confirmation link to the user's new email,
 // disable **Secure email change** in your project's email auth provider settings.
@@ -16,16 +13,16 @@ export const SECURE_EMAIL_CHANGE = false;
 export const useChangeEmail = () => {
   const router = useRouter();
   return async (email) => {
-    const redirectPath = router.resolve({ name: ROUTE_INVESTOR }).fullPath;
+    // Redirect URLs: https://supabase.com/dashboard/project/_/auth/url-configuration
+    // Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
+    // or it will redirect to Site URL (default: http://localhost:3000)
+    const redirectRoute = router.resolve({ name: ROUTE_INVESTOR });
+    const emailRedirectTo = `${location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
 
     // https://supabase.com/docs/reference/javascript/auth-updateuser
     const { data, error } = await supabase.auth.updateUser(
       { email },
-      // Redirect URLs: https://supabase.com/dashboard/project/_/auth/url-configuration
-      // Documentation: https://supabase.com/docs/guides/auth/redirect-urls
-      // Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
-      // or it will redirect to Site URL (default: http://localhost:3000)
-      { emailRedirectTo: `${BASE_URL}${redirectPath}` } // https://*.ei.ventures/*
+      { emailRedirectTo }
     );
     if (error) {
       console.error("Error updating the user:", error.message);

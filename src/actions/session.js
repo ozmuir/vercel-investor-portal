@@ -6,9 +6,6 @@ import messages from "../messages.json";
 import { ROUTE_INVESTOR_SIGN_IN } from "../routing";
 import { addSessionCallback } from "../state/session.js";
 
-const BASE_URL = process.env.VUE_APP_BASE_URL;
-if (!BASE_URL) throw new Error("VUE_APP_BASE_URL not set.");
-
 export function useOnSession(callback = null) {
   let unlisten;
   onMounted(() => {
@@ -22,26 +19,16 @@ export function useOnSession(callback = null) {
 export const useSignIn = () => {
   const router = useRouter();
   return async (email) => {
-    // Requirements for redirects to work properly:
-    //  - Add to allowed redirects URL at https://supabase.com/dashboard/project/_/auth/url-configuration
-    //    Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
-    //    or it will redirect to Site URL (default: http://localhost:3000)
-    //  - The redirect path should be orchestrated with VueJS navigation guards.
-    //    Target PATH_INVESTOR_SIGN_IN, else the navigation guard will
-    //    redirects there anyway and breaks the login flow.
-
-    // The below redirect path is allowed by the pattern https://*.ei.ventures/**
-    // and a navigation guard redirecting unauthenticated to ROUTE_INVESTOR_SIGN_IN
+    // Redirect URLs: https://supabase.com/dashboard/project/_/auth/url-configuration
+    // Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
+    // or it will redirect to Site URL (default: http://localhost:3000)
     const redirectRoute = router.resolve({ name: ROUTE_INVESTOR_SIGN_IN });
-    const emailRedirectTo = `${BASE_URL}${redirectRoute.fullPath}`;
+    const emailRedirectTo = `${location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
 
     // https://supabase.com/docs/reference/javascript/auth-signinwithotp
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo,
-        // shouldCreateUser: false, // Keeping this `true` allows for password-less sign-ups
-      },
+      options: { emailRedirectTo },
     });
     if (error) {
       console.error("Error sending a one-time login link:", error.message);

@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-VUE_APP_BASE_URL=http://127.0.0.1:8080 \
 VUE_APP_SUPABASE_URL=$(<~SUPABASE_URL) \
 VUE_APP_SUPABASE_ANON_KEY=$(<~SUPABASE_ANON_KEY) \
 yarn $@

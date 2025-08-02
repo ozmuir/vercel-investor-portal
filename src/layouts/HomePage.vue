@@ -17,14 +17,14 @@
       </main>
       <CopyRightCell />
       <NavigationCell />
-      <ContactUsCell />
+      <!-- <ContactUsCell /> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import ContactUsCell from "../components/ContactUsCell";
+// import ContactUsCell from "../components/ContactUsCell";
 import CopyRightCell from "../components/CopyRightCell";
 import NavigationCell from "../components/NavigationCell";
 import s from "../styles/grid.module.scss";

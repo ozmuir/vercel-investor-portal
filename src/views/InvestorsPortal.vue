@@ -7,7 +7,7 @@
       access the portal.
     </template>
     <template v-else>
-      <Heading as="h2">{{ messages.heading.updates }}</Heading>
+      <Heading as="h2">{{ messages.heading.news }}</Heading>
       <News />
       <Actions />
     </template>

@@ -32,7 +32,7 @@ import ViewInvestmentList from "../views/InvestmentList";
 import ViewInvestorsPortal from "../views/InvestorsPortal";
 import ViewFileList from "../views/File/List.vue";
 import ViewFileNew from "../views/File/New.vue";
-import ViewHome from "../views/Home.vue";
+// import ViewHome from "../views/Home.vue";
 import ViewNotFound from "../views/NotFound";
 import ViewRequestEdit from "../views/Request/Edit.vue";
 import ViewRequestList from "../views/Request/List.vue";
@@ -43,17 +43,17 @@ import messages from "../messages.json";
 const withSuffix = (text) => `${text} - ${messages.meta.title._suffix}`;
 
 export default [
-  /*
   {
     path: PATH_HOME,
     name: ROUTE_HOME,
-    component: ViewHome,
+    // component: ViewHome,
+    component: ViewInvestorsPortal,
     meta: {
-      title: messages.meta.title.home,
+      // title: messages.meta.title.home,
+      title: withSuffix(messages.meta.title.investors_portal),
       // Layout: LayoutHomePage,
     },
   },
-  */
   {
     path: PATH_INVESTOR,
     name: ROUTE_INVESTOR,

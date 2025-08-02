@@ -36,7 +36,7 @@
         gap: 3rem;
       "
     >
-      <Logo animated style="width: 100%; max-width: 10rem" />
+      <LogoEI animated style="width: 100%; max-width: 10rem" />
       <Heading as="h1" style="font-weight: normal">
         Welcome to
         <div class="DISABLED-fx-text-background">
@@ -51,7 +51,7 @@
 defineOptions({ name: "V_Home" });
 
 import { onMounted } from "vue";
-import Logo from "../components/LogoAnimated";
+import LogoEI from "../components/LogoEIAnimated.vue";
 import Heading from "../components/Heading";
 import { logoinfoStateRef, logoinfoToggle } from "../state/logoinfo"
 

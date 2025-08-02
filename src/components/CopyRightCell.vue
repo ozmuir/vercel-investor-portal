@@ -5,6 +5,6 @@
 </template>
 
 <script setup>
-import CopyRight from "../components/CopyRight";
+import CopyRight from "../components/CopyRight.vue";
 import s from "../styles/grid.module.scss";
 </script>

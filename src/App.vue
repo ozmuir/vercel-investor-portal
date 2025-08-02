@@ -35,6 +35,7 @@ watch(
   }
 );
 
+/*
 onMounted(() => {
   // if (typeof window !== "undefined") {
   //   // https://d3vhysnltdkzu.cloudfront.net/ortho.gg/symbols-1.0.0.svg
@@ -47,6 +48,7 @@ onMounted(() => {
     defer: true, // to not slow down SVG animation
   });
 });
+*/
 </script>
 
 <style src="modern-normalize/modern-normalize.css"></style>

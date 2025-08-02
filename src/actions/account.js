@@ -17,7 +17,7 @@ export const useChangeEmail = () => {
     // Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
     // or it will redirect to Site URL (default: http://localhost:3000)
     const redirectRoute = router.resolve({ name: ROUTE_INVESTOR });
-    const emailRedirectTo = `${location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
+    const emailRedirectTo = `${document.location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
 
     // https://supabase.com/docs/reference/javascript/auth-updateuser
     const { data, error } = await supabase.auth.updateUser(

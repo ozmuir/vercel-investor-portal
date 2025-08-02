@@ -7,11 +7,11 @@
     :class="[$table.transparent, 'text-small']"
   >
     <tbody>
-      <template v-for="item in items" :key="item.title">
+      <template v-for="item in news" :key="item.title">
         <tr>
           <td>{{ formatDateShort(item.date) }}</td>
           <td>
-            <NThing v-for="item in items" :key="item.title" class="text-small">
+            <NThing class="text-small">
               <template #header>
                 <div class="text-small">
                   {{ item.title }}
@@ -33,7 +33,7 @@ defineOptions({ name: "CNews" });
 
 import { NTable, NThing } from "naive-ui";
 // import Collapse from "../components/Collapse";
-import items from "../news.js";
+import news from "../news.js";
 import $table from "../styles/table.module.scss";
 import { formatDateShort } from "../utils";
 

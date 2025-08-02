@@ -4,7 +4,14 @@
       <div :class="[s.cell, s.y_start, s.x_start]">
         <RouterLink to="/">
           <!-- <Logo style="width: 50%; max-width: var(--logo-size)" /> -->
-          <Logo style="width: var(--logo-size); height: var(--logo-size)" />
+          <LogoEI
+            v-if="_location.host.indexOf('ei.ventures') !== -1"
+            style="width: var(--logo-size); height: var(--logo-size)"
+          />
+          <LogoOT
+            v-if="_location.host.indexOf('orthogonalthinker') !== -1"
+            style="width: var(--logo-size); height: var(--logo-size)"
+          />
         </RouterLink>
       </div>
       <div :class="[s.cell, s.y_start, s.x_mid]">
@@ -26,17 +33,20 @@
       </main>
       <CopyRightCell />
       <NavigationCell />
-      <ContactUsCell />
+      <!-- <ContactUsCell /> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import Breadcrumb from "../components/Breadcrumb.vue";
-import ContactUsCell from "../components/ContactUsCell.vue";
+// import ContactUsCell from "../components/ContactUsCell.vue";
 import CopyRightCell from "../components/CopyRightCell.vue";
 import NavigationCell from "../components/NavigationCell.vue";
-import Logo from "../components/LogoAnimated.vue";
+import LogoEI from "../components/LogoEIAnimated.vue";
+import LogoOT from "../components/LogoOTAnimated.vue";
 import UserMenu from "../components/UserMenu.vue";
 import s from "../styles/grid.module.scss";
+
+const _location = document.location;
 </script>

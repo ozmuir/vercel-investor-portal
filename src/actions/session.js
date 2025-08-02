@@ -23,7 +23,7 @@ export const useSignIn = () => {
     // Allowed Redirect URLs must *fully* match the `emailRedirectTo` URL,
     // or it will redirect to Site URL (default: http://localhost:3000)
     const redirectRoute = router.resolve({ name: ROUTE_INVESTOR_SIGN_IN });
-    const emailRedirectTo = `${location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
+    const emailRedirectTo = `${document.location.origin}${process.env.BASE_URL}${redirectRoute.fullPath}`;
 
     // https://supabase.com/docs/reference/javascript/auth-signinwithotp
     const { data, error } = await supabase.auth.signInWithOtp({

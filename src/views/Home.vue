@@ -1,59 +1,11 @@
-<template>
-  <div class="root" @click="logoinfoToggle">
-    <div
-      :class="['item', !logoinfoStateRef ? 'active' : '']"
-      style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      "
-    >
-      <div
-        style="
-          /* display: flex; */
-          /* flex-direction: column; */
-          /* gap: 0.5em; */
-          font-size: 1.5rem;
-        "
-      >
-        Inspired by the raw beauty of Kaʻena Point and shaped by founder David
-        Nikzad’s personal wellness journey,
-        <strong class="fx-text-background">
-          Emotional Intelligence Ventures
-        </strong>
-        is pioneering mental wellness innovations rooted in nature,
-        neuroscience, and emotional intelligence.
-      </div>
-    </div>
-    <div
-      :class="['item', logoinfoStateRef ? 'active' : '']"
-      style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-      "
-    >
-      <LogoEI animated style="width: 100%; max-width: 10rem" />
-      <Heading as="h1" style="font-weight: normal">
-        Welcome to
-        <div class="DISABLED-fx-text-background">
-          Emotional Intelligence Ventures
-        </div>
-      </Heading>
-    </div>
-  </div>
-</template>
-
 <script setup>
 defineOptions({ name: "V_Home" });
 
 import { onMounted } from "vue";
 import LogoEI from "../components/LogoEIAnimated.vue";
 import Heading from "../components/Heading";
-import { logoinfoStateRef, logoinfoToggle } from "../state/logoinfo"
+import { logoinfoStateRef, logoinfoToggle } from "../state/logoinfo";
+import { COLORS_EI } from "../variables.js";
 
 //
 //
@@ -105,7 +57,7 @@ const eivColors = (() => {
   */
 
   return Object.fromEntries(
-    Object.entries(window.eivColors).map(([k, v]) => [k, hexToRgb(v)])
+    Object.entries(COLORS_EI).map(([k, v]) => [k, hexToRgb(v)])
   );
 })();
 
@@ -132,6 +84,55 @@ onMounted(() => {
   animateTextBackground(document.querySelectorAll(".fx-text-background"));
 });
 </script>
+
+<template>
+  <div class="root" @click="logoinfoToggle">
+    <div
+      :class="['item', !logoinfoStateRef ? 'active' : '']"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          /* display: flex; */
+          /* flex-direction: column; */
+          /* gap: 0.5em; */
+          font-size: 1.5rem;
+        "
+      >
+        Inspired by the raw beauty of Kaʻena Point and shaped by founder David
+        Nikzad’s personal wellness journey,
+        <strong class="fx-text-background">
+          Emotional Intelligence Ventures
+        </strong>
+        is pioneering mental wellness innovations rooted in nature,
+        neuroscience, and emotional intelligence.
+      </div>
+    </div>
+    <div
+      :class="['item', logoinfoStateRef ? 'active' : '']"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+      "
+    >
+      <LogoEI animated style="width: 100%; max-width: 10rem" />
+      <Heading as="h1" style="font-weight: normal">
+        Welcome to
+        <div class="DISABLED-fx-text-background">
+          Emotional Intelligence Ventures
+        </div>
+      </Heading>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .root {

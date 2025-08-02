@@ -6,6 +6,8 @@
 defineOptions({ name: "C_Spinner" });
 const props = defineProps({ type: { type: String, required: true } });
 
+const color = "#ffffff";
+
 // https://www.npmjs.com/package/vue-spinner
 // https://github.com/yuanyan/halogen
 // https://yuanyan.github.io/halogen/
@@ -22,6 +24,4 @@ const [TheLoader, size] = {
 if (props.type && !TheLoader) {
   throw new Error(`Unknown Loader type "${props.type}"`);
 }
-
-const color = "#fff"; // window.eivColors.pink;
 </script>

@@ -38,3 +38,16 @@ export const LENGTH_MAX_REQUEST_SUMMARY = 70;
 export const LENGTH_MIN_REQUEST_DETAILS = 50;
 export const LENGTH_MAX_REQUEST_DETAILS = 2000;
 export const LENGTH_MAX_RESPONSE_NOTE = 2000;
+
+export const COLORS_EI = {
+  blue: "#26427e",
+  pink: "#ff0088",
+  purple: "#7766ff",
+  cyan: "#00ffee",
+};
+
+export const COLORS_OT = {
+  high: "#ffffff",
+  mid: "#999999",
+  low: "#444444",
+};

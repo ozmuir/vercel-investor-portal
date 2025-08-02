@@ -16,9 +16,11 @@ function api(session, method, uri, values) {
   };
   const options = { headers };
   options.method = method;
-  const hostname =
-    "development" === process.env.NODE_ENV ? "http://localhost:3000" : "";
-  let url = `${hostname}${uri}`;
+  const API_HOSTNAME =
+    "development" === process.env.NODE_ENV ? "http://localhost:8888" : "";
+  const API_BASE_URL =
+    "development" === process.env.NODE_ENV ? "" : process.env.BASE_URL;
+  let url = `${API_HOSTNAME}${API_BASE_URL}${uri}`;
   if (values) {
     if (method === "GET") {
       url += "?" + new URLSearchParams(values); // non-primitive values will be stringified!
@@ -27,5 +29,6 @@ function api(session, method, uri, values) {
       options.body = JSON.stringify(values);
     }
   }
+  console.log("Calling", url);
   return fetch(url, options).then((res) => res.json());
 }

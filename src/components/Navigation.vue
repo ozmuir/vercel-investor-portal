@@ -1,11 +1,3 @@
-<template>
-  <nav class="navigation">
-    <RouterLink v-if="navLinkShow" :to="navLinkRef[0]" class="fx_outline">
-      {{ navLinkRef[1] }}
-    </RouterLink>
-  </nav>
-</template>
-
 <script setup>
 defineOptions({ name: "C_Navigation" });
 
@@ -16,9 +8,7 @@ import messages from "../messages.json";
 
 const route = useRoute();
 const router = useRouter();
-const navLinkShow = computed(() =>
-  [ROUTE_HOME].includes(route.name)
-);
+const navLinkShow = computed(() => [ROUTE_HOME].includes(route.name));
 const navLinkRef = computed(() => {
   const [name, label] =
     route.name === ROUTE_HOME
@@ -27,6 +17,14 @@ const navLinkRef = computed(() => {
   return [router.resolve({ name }), label];
 });
 </script>
+
+<template>
+  <nav class="navigation">
+    <RouterLink v-if="navLinkShow" :to="navLinkRef[0]" class="fx_outline">
+      {{ navLinkRef[1] }}
+    </RouterLink>
+  </nav>
+</template>
 
 <style scoped>
 .navigation {

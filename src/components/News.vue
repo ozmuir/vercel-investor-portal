@@ -1,31 +1,32 @@
 <template>
-  <NTable
+  <!-- <NTable
     :bordered="false"
     :bottom-bordered="false"
     :single-column="true"
     :single-line="true"
     :class="[$table.transparent, 'text-small']"
   >
-    <tbody>
-      <template v-for="item in news" :key="item.title">
-        <tr>
-          <td>{{ formatDateShort(item.date) }}</td>
-          <td>
-            <NThing class="text-small">
-              <template #header>
-                <div class="text-small">
-                  {{ item.title }}
-                </div>
-              </template>
-              <!-- <Collapse :lines="2"> -->
-              <component :is="item.body" />
-              <!-- </Collapse> -->
-            </NThing>
-          </td>
-        </tr>
+    <tbody> -->
+  <template v-for="item in news" :key="item.title">
+    <!-- <tr>
+          <td> -->
+    <NThing class="text-small text-left">
+      <template #header>
+        <div class="text-small">
+          <b>{{ formatDateShort(item.date) }}</b>
+          <br />
+          {{ item.title }}
+        </div>
       </template>
-    </tbody>
-  </NTable>
+      <!-- <Collapse :lines="2"> -->
+      <component :is="item.body" />
+      <!-- </Collapse> -->
+    </NThing>
+    <!-- </td>
+        </tr> -->
+  </template>
+  <!-- </tbody>
+  </NTable> -->
 </template>
 
 <script setup>

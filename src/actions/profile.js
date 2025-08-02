@@ -13,14 +13,10 @@ export async function getProfile(user_id) {
     .limit(1)
     .single();
   if (error) {
+    console.log("Error fetching user profile:", error.message);
     throw new AccountError(`Error fetching user profile: ${error.message}`);
   }
-  // if (data.length !== 1) {
-  //   throw new AccountError(
-  //     `Error fetching user profile: found ${data.length} results`
-  //   );
-  // }
-  console.log("Fetched the profile of the user", data);
+  console.log("Fetched user profile:", data);
   return data;
 }
 

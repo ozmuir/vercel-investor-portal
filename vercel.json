@@ -3,6 +3,10 @@
     {
       "source": "/investor/:file(.*\\..*)",
       "destination": "https://vercel-investor-portal.vercel.app/:file"
+    },
+    {
+      "source": "/investor/api/:match*",
+      "destination": "https://vercel-investor-portal.vercel.app/api/:match*"
     }
   ]
 }

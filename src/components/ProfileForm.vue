@@ -1,53 +1,3 @@
-<template>
-  <NForm
-    ref="formRef"
-    :model="modelRef"
-    :rules="rules"
-    @submit.prevent="handleSubmit"
-    :disabled="!enabledRef"
-  >
-    <NFormItem path="name" label="First and Last Name">
-      <NInput
-        required
-        type="text"
-        v-model:value="modelRef.name"
-        placeholder=""
-      />
-    </NFormItem>
-    <NFormItem path="address" label="Physical address">
-      <NInput
-        required
-        type="text"
-        v-model:value="modelRef.address"
-        placeholder=""
-      />
-    </NFormItem>
-    <NFormItem path="phone" label="Phone Number">
-      <NInput
-        required
-        type="text"
-        v-model:value="modelRef.phone"
-        placeholder=""
-      />
-    </NFormItem>
-    <NFormItem path="address_erc20" label="ERC20 wallet address">
-      <NInput
-        required
-        type="text"
-        v-model:value="modelRef.address_erc20"
-        placeholder="e.g. 0x8ba1f109551bD432803012645Ac136ddd64DBA72"
-      />
-    </NFormItem>
-    <FormButtons
-      :submit="{
-        content: 'Save',
-        disabled: !enabledRef,
-      }"
-    />
-    <FeedBack :success="successRef" :error="errorRef" />
-  </NForm>
-</template>
-
 <script setup>
 import { isAddress } from "ethers";
 import { NForm, NFormItem, NInput } from "naive-ui";
@@ -59,25 +9,31 @@ import FeedBack from "../components/FeedBack.vue";
 import { sessionRef } from "../state/session";
 import { lock } from "../state/ui";
 
-const picker = pick(["name", "address", "address_erc20"]);
+const picker = pick(["name", "address", "phone", "address_erc20"]);
 const createModel = () => picker(sessionRef.value?.profile || {});
 watch(sessionRef, (session) => {
-  modelRef.value = session.profile;
+  modelRef.value = createModel();
 });
 
 const rules = {
-  name: [
-    {
-      required: false,
-      trigger: ["input", "blur"],
-    },
-  ],
-  address: [
-    {
-      required: false,
-      trigger: ["input", "blur"],
-    },
-  ],
+  // name: [
+  //   {
+  //     required: false,
+  //     trigger: ["input", "blur"],
+  //   },
+  // ],
+  // address: [
+  //   {
+  //     required: false,
+  //     trigger: ["input", "blur"],
+  //   },
+  // ],
+  // phone: [
+  //   {
+  //     required: false,
+  //     trigger: ["input", "blur"],
+  //   },
+  // ],
   address_erc20: [
     {
       required: false,
@@ -134,10 +90,59 @@ async function _submit(values) {
   } else {
     successRef.value = "Your profile was updated.";
     errorRef.value = "";
-    modelRef.value = createModel();
-    // for now users may update the page to be able to submit again
   }
+  enabledRef.value = true;
   lock();
   return after_updateProfile({ data, error });
 }
 </script>
+
+<template>
+  <NForm
+    ref="formRef"
+    :model="modelRef"
+    :rules="rules"
+    @submit.prevent="handleSubmit"
+    :disabled="!enabledRef"
+  >
+    <NFormItem path="name" label="First and Last Name">
+      <NInput
+        required
+        type="text"
+        v-model:value="modelRef.name"
+        placeholder=""
+      />
+    </NFormItem>
+    <NFormItem path="address" label="Physical address">
+      <NInput
+        required
+        type="text"
+        v-model:value="modelRef.address"
+        placeholder=""
+      />
+    </NFormItem>
+    <NFormItem path="phone" label="Phone Number">
+      <NInput
+        required
+        type="text"
+        v-model:value="modelRef.phone"
+        placeholder=""
+      />
+    </NFormItem>
+    <NFormItem path="address_erc20" label="ERC20 wallet address">
+      <NInput
+        required
+        type="text"
+        v-model:value="modelRef.address_erc20"
+        placeholder="e.g. 0x8ba1f109551bD432803012645Ac136ddd64DBA72"
+      />
+    </NFormItem>
+    <FormButtons
+      :submit="{
+        content: 'Save',
+        disabled: !enabledRef,
+      }"
+    />
+    <FeedBack :success="successRef" :error="errorRef" />
+  </NForm>
+</template>

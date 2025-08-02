@@ -9,11 +9,11 @@
       </template>
       <!-- Confirm deletion of these files? -->
       <template #action>
-        <div class="flex-row">
-          Please confirm the deletion
+        <div class="flex-row flex-center gap-1">
+          <span>Please confirm</span>
           <ButtonButton2
             :Icon="IconDelete"
-            content="OK"
+            content="Delete"
             @click="
               showDeleteConfirmRef = false;
               handleFilesDelete();

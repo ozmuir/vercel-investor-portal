@@ -42,7 +42,7 @@
         keySplines=".5 0 .5 1; .5 0 .5 1"
         keyTimes="0; .5; 1"
         begin="0s"
-        dur="3s"
+        :dur="animationDuration"
         repeatCount="indefinite"
       />
     </use>
@@ -52,7 +52,7 @@
         attributeName="opacity"
         values="0.8; 1; 0.8"
         begin="1.25s"
-        dur="3s"
+        :dur="animationDuration"
         repeatCount="indefinite"
       />
       <animateTransform
@@ -65,7 +65,7 @@
         keySplines=".5 0 .5 1; .5 0 .5 1"
         keyTimes="0; .5; 1"
         begin="1s"
-        dur="3s"
+        :dur="animationDuration"
         repeatCount="indefinite"
       />
     </use>
@@ -75,7 +75,7 @@
         attributeName="opacity"
         values="0.8; 1; 0.8"
         begin="1.5s"
-        dur="3s"
+        :dur="animationDuration"
         repeatCount="indefinite"
       />
       <animateTransform
@@ -88,7 +88,7 @@
         keySplines=".5 0 .5 1; .5 0 .5 1"
         keyTimes="0; .5; 1"
         begin="2s"
-        dur="3s"
+        :dur="animationDuration"
         repeatCount="indefinite"
       />
     </use>
@@ -96,5 +96,8 @@
 </template>
 
 <script setup>
-defineProps({ animated: Boolean });
+defineProps({
+  animated: Boolean,
+  animationDuration: { type: String, default: "3s" },
+});
 </script>

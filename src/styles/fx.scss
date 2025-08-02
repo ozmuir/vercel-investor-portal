@@ -73,35 +73,37 @@
 .fx_outline::after {
   content: " ";
   position: absolute;
-  opacity: 0.5;
+  opacity: 0;
 
-  // width: 10%;
-  // height: 15%;
-  width: 4px;
-  height: 4px;
+  width: 0;
+  height: 0;
 
   border: 0 solid currentColor;
 
   --duration: var(--fx_duration);
   --duration: 0.5s;
-  transition:
-    opacity var(--duration) linear,
-    width var(--duration) ease-out,
+  transition: opacity var(--duration) linear, width var(--duration) ease-out,
     height var(--duration) ease-out;
 }
 
-.fx_outline_2::before,
-.fx_outline_2::after {
-  opacity: 0;
+/*
+.fx_outline--corners::before,
+.fx_outline--corners::after {
+  // width: 10%;
+  // height: 15%;
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
 }
-.fx_outline_2:hover::before,
-.fx_outline_2:hover::after,
-.fx_outline_2:focus::before,
-.fx_outline_2:focus::after,
-.fx_outline_2:active::before,
-.fx_outline_2:active::after {
+.fx_outline--corners:hover::before,
+.fx_outline--corners:hover::after,
+.fx_outline--corners:focus::before,
+.fx_outline--corners:focus::after,
+.fx_outline--corners:active::before,
+.fx_outline--corners:active::after {
   opacity: 1;
 }
+*/
 
 .fx_outline::before {
   top: 0;
@@ -141,9 +143,7 @@
   width: 50%;
 
   --duration: var(--fx_duration);
-  transition:
-    opacity var(--duration) linear,
-    right var(--duration) ease-out,
+  transition: opacity var(--duration) linear, right var(--duration) ease-out,
     width var(--duration) ease-out;
 }
 .fx_underline:hover::after,

@@ -11,8 +11,6 @@
     <FileListActions
       v-if="checkedIdsRef.length"
       :handleFilesDelete="handleFilesDelete"
-      class="flex-end"
-      style="width: 100%; margin-top: -1rem; margin-bottom: 1rem"
     />
     <NCheckboxGroup
       @update:value="handleCheckboxChange"
@@ -78,7 +76,7 @@ const pickers = [
       formatBytes(file.size)
     ),
   (file) =>
-    h(Fragment, null, [
+    h(Fragment, [
       formatDateLong(file.created_at),
       // " ",
       // h(FileDates, { file }),
@@ -86,9 +84,9 @@ const pickers = [
   (file) =>
     h(
       Fragment,
-      null,
-      file.investments?.map((invt) =>
-        h(NTag, { key: invt, size: "small" }, () => formatInvestmentName(invt))
+      // Fragment MUST receive an Array
+      (file.investments || []).map((invt) =>
+        h(NTag, { key: invt.id, size: "small" }, () => formatInvestmentName(invt))
       )
     ),
   (file) => h(NText, { depth: 3, class: "text-small" }, () => file.comment),

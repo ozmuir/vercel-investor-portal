@@ -38,7 +38,7 @@ const labels = [
 const pickers = [
   // (request) => h(NCheckbox, { value: request.id }),
   (request) =>
-    h(Fragment, null, [
+    h(Fragment, [
       h(
         RouterLink,
         {
@@ -55,17 +55,19 @@ const pickers = [
   (request) =>
     h(
       Fragment,
-      null,
-      request.investments?.map((invt) =>
-        h(NTag, { key: invt, size: "small" }, () => formatInvestmentName(invt))
+      // Fragment MUST receive an Array
+      (request.investments || []).map((invt) =>
+        h(NTag, { key: invt.id, size: "small" }, () =>
+          formatInvestmentName(invt)
+        )
       )
     ),
   (request) =>
     h(
       Fragment,
-      null,
-      request.files?.map((file) =>
-        h(NTag, { key: file, size: "small" }, () =>
+      // Fragment MUST receive an Array
+      (request.files || []).map((file) =>
+        h(NTag, { key: file.id, size: "small" }, () =>
           h(FileOpener, {
             filePath: file.name,
             mimetype: file.mimetype,
@@ -74,7 +76,7 @@ const pickers = [
       )
     ),
   (request) =>
-    h(Fragment, null, [
+    h(Fragment, [
       h(
         ButtonLink,
         {

@@ -1,11 +1,3 @@
-// const { pink, purple, cyan } = window.eivColors;
-window.eivColors = {
-  blue: "#26427e",
-  pink: "#ff0088",
-  purple: "#7766ff",
-  cyan: "#00ffee",
-};
-
 window.sleep = (timeout) =>
   // eslint-disable-next-line no-unused-vars
   new Promise((resolve, reject) => setTimeout(resolve, timeout));

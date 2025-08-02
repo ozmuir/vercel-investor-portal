@@ -1,121 +1,3 @@
-<template>
-  <Loader
-    v-if="sessionRef === undefined"
-    type="bounce"
-    class="justify-center"
-  />
-  <div v-else-if="sessionRef?.profile.is_admin === true" class="view-60rem">
-    <Heading as="h3">Admin | Requests</Heading>
-    <Loader
-      v-if="adminRequestsLoadingRef"
-      type="bounce"
-      class="justify-center"
-    />
-    <template v-if="adminRequestsRef.length">
-      <NModal v-model:show="showModalRef">
-        <NCard
-          style="width: 600px"
-          :title="`Edit Request ${requestModelRef.req_id}`"
-          :bordered="false"
-          role="dialog"
-          aria-modal="true"
-        >
-          <template #header>Request {{ requestModelRef.req_id }}</template>
-          <NForm
-            :model="requestModelRef"
-            @submit.prevent="handleRequestEditSubmit"
-          >
-            <NFormItem path="res_note" label="Response Note">
-              <NInput
-                type="textarea"
-                v-model:value="requestModelRef.res_note"
-                :maxlength="LENGTH_MAX_RESPONSE_NOTE"
-                :rows="10"
-              />
-            </NFormItem>
-            <!--
-            <NFormItem path="res_status" label="Response Status">
-              <NSelect
-                :options="statusOptions"
-                v-model:value="requestModelRef.res_status"
-              />
-            </NFormItem>
-            -->
-            <ButtonSubmit>Submit</ButtonSubmit>
-          </NForm>
-        </NCard>
-      </NModal>
-      <!--
-      <NForm>
-        <NInput />
-      </NForm>
-      -->
-
-      <RequestPagination
-        :page="pageRef"
-        :total="adminRequestsTotalRef"
-        :perPage="perPageRef"
-        @update:page="setPage($event)"
-        @update:page-size="setPerPage($event)"
-      />
-      <NCheckboxGroup :class="$table.table_container">
-        <NTable :bordered="true" :single-line="true" :class="$table.table">
-          <thead>
-            <tr>
-              <th></th>
-              <TableLabels :labels="labels" />
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="request in adminRequestsRef" :key="request.id">
-              <tr>
-                <td :rowspan="2 + (request.res_note ? 1 : 0)">
-                  <div class="flex-col gap-1" style="align-items: center">
-                    <!-- <NCheckbox :value="request.id" /> -->
-                    <ButtonButton @click="handleRequestEditOpen(request)">
-                      <NIcon><IconStatus /></NIcon>
-                    </ButtonButton>
-                  </div>
-                </td>
-                <TableCells
-                  :contents="request"
-                  :labels="labels"
-                  :pickers="pickers"
-                />
-              </tr>
-              <tr>
-                <td :colspan="labels.length">
-                  <Heading as="h6">
-                    {{ request.req_summary }}
-                  </Heading>
-                  <div style="white-space: pre-wrap">
-                    {{ request.req_details }}
-                  </div>
-                </td>
-              </tr>
-              <tr v-if="request.res_note">
-                <td :colspan="labels.length">
-                  <div style="white-space: pre-wrap">
-                    {{ request.res_note }}
-                  </div>
-                </td>
-              </tr>
-              <TableSeparator />
-            </template>
-          </tbody>
-        </NTable>
-      </NCheckboxGroup>
-      <RequestPagination
-        :page="pageRef"
-        :total="adminRequestsTotalRef"
-        :perPage="perPageRef"
-        @update:page="setPage($event)"
-        @update:page-size="setPerPage($event)"
-      />
-    </template>
-  </div>
-</template>
-
 <script setup>
 defineOptions({ name: "ViewAdminRequests" });
 
@@ -197,17 +79,17 @@ const labels = [
 
 const pickers = [
   (request) =>
-    h(Fragment, null, [
+    h(Fragment, [
       renderEllipsis(request.id),
       renderCopyButton(request.id, { class: "inline" }),
     ]),
   (request) =>
-    h(Fragment, null, [
+    h(Fragment, [
       renderEllipsis(request.profile_id),
       renderCopyButton(request.profile_id, { class: "inline" }),
     ]),
   (request) =>
-    h(Fragment, null, [
+    h(Fragment, [
       h(
         "a",
         { class: "inline", href: `mailto:${request.email}` },
@@ -224,17 +106,20 @@ const pickers = [
   (request) =>
     h(
       Fragment,
-      null,
-      request.investments?.map((invt) =>
-        h(NTag, { key: invt, size: "small" }, () => formatInvestmentName(invt))
+      // Fragment MUST receive an Array
+      (request.investments || []).map(
+        (invt) =>
+          h(NTag, { key: invt.id, size: "small" }, () =>
+            formatInvestmentName(invt)
+          )
       )
     ),
   (request) =>
     h(
       Fragment,
-      null,
-      request.files?.map((file) =>
-        h(NTag, { key: file, size: "small" }, () =>
+      // Fragment MUST receive an Array
+      (request.files || []).map((file) =>
+        h(NTag, { key: file.id, size: "small" }, () =>
           h(FileOpener, {
             filePath: file.name,
             mimetype: file.mimetype,
@@ -243,22 +128,6 @@ const pickers = [
         )
       )
     ),
-
-  // (request) =>
-  //   h(
-  //     ButtonButton,
-  //     {
-  //       onClick: () => {
-  //         showModalRef.value = true;
-  //         requestModelRef.value = newResponseModel(
-  //           request.id,
-  //           request.res_status,
-  //           request.res_note
-  //         );
-  //       },
-  //     },
-  //     () => h(NIcon, null, () => h(IconStatus))
-  //   ),
 ];
 
 const router = useRouter();
@@ -341,3 +210,114 @@ async function onSelectChange(request_id, status) {
   lock();
 }
 </script>
+
+<template>
+  <Loader
+    v-if="sessionRef === undefined"
+    type="bounce"
+    class="justify-center"
+  />
+  <div v-else-if="sessionRef?.profile.is_admin === true" class="view-60rem">
+    <Heading as="h3">Admin | Requests</Heading>
+    <Loader
+      v-if="adminRequestsLoadingRef"
+      type="bounce"
+      class="justify-center"
+    />
+    <template v-if="adminRequestsRef.length">
+      <NModal v-model:show="showModalRef">
+        <NCard
+          style="width: 600px"
+          :title="`Edit Request ${requestModelRef.req_id}`"
+          :bordered="false"
+          role="dialog"
+          aria-modal="true"
+        >
+          <template #header>Request {{ requestModelRef.req_id }}</template>
+          <NForm
+            :model="requestModelRef"
+            @submit.prevent="handleRequestEditSubmit"
+          >
+            <NFormItem path="res_note" label="Response Note">
+              <NInput
+                type="textarea"
+                v-model:value="requestModelRef.res_note"
+                :maxlength="LENGTH_MAX_RESPONSE_NOTE"
+                :rows="10"
+              />
+            </NFormItem>
+            <ButtonSubmit>Submit</ButtonSubmit>
+          </NForm>
+        </NCard>
+      </NModal>
+
+      <!--
+      <NForm>
+        TODO Add filters
+        <NInput />
+      </NForm>
+      -->
+
+      <RequestPagination
+        :page="pageRef"
+        :total="adminRequestsTotalRef"
+        :perPage="perPageRef"
+        @update:page="setPage($event)"
+        @update:page-size="setPerPage($event)"
+      />
+      <NCheckboxGroup :class="$table.table_container">
+        <NTable :bordered="true" :single-line="true" :class="$table.table">
+          <thead>
+            <tr>
+              <th></th>
+              <TableLabels :labels="labels" />
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="request in adminRequestsRef" :key="request.id">
+              <tr>
+                <td :rowspan="2 + (request.res_note ? 1 : 0)">
+                  <div class="flex-col gap-1" style="align-items: center">
+                    <ButtonButton @click="handleRequestEditOpen(request)">
+                      <NIcon><IconStatus /></NIcon>
+                    </ButtonButton>
+                  </div>
+                </td>
+                <TableCells
+                  :contents="request"
+                  :labels="labels"
+                  :pickers="pickers"
+                />
+              </tr>
+              <tr>
+                <td :colspan="labels.length">
+                  <Heading as="h6">
+                    {{ request.req_summary }}
+                  </Heading>
+                  <div style="white-space: pre-wrap">
+                    {{ request.req_details }}
+                  </div>
+                </td>
+              </tr>
+              <tr v-if="request.res_note">
+                <td :colspan="labels.length">
+                  <div style="white-space: pre-wrap">
+                    {{ request.res_note }}
+                  </div>
+                </td>
+              </tr>
+              <TableSeparator />
+            </template>
+          </tbody>
+        </NTable>
+      </NCheckboxGroup>
+      <RequestPagination
+        :page="pageRef"
+        :total="adminRequestsTotalRef"
+        :perPage="perPageRef"
+        @update:page="setPage($event)"
+        @update:page-size="setPerPage($event)"
+      />
+    </template>
+  </div>
+</template>

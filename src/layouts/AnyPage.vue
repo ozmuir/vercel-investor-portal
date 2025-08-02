@@ -5,11 +5,13 @@
         <RouterLink to="/">
           <!-- <Logo style="width: 50%; max-width: var(--logo-size)" /> -->
           <LogoEI
-            v-if="_location.host.indexOf('ei.ventures') !== -1"
+            animated
+            v-if="isEI"
             style="width: var(--logo-size); height: var(--logo-size)"
           />
           <LogoOT
-            v-if="_location.host.indexOf('orthogonalthinker') !== -1"
+            animated
+            v-if="isLocal || isOT"
             style="width: var(--logo-size); height: var(--logo-size)"
           />
         </RouterLink>
@@ -32,7 +34,7 @@
         </div>
       </main>
       <CopyRightCell />
-      <NavigationCell />
+      <!-- <NavigationCell /> -->
       <!-- <ContactUsCell /> -->
     </div>
   </div>
@@ -43,10 +45,9 @@ import Breadcrumb from "../components/Breadcrumb.vue";
 // import ContactUsCell from "../components/ContactUsCell.vue";
 import CopyRightCell from "../components/CopyRightCell.vue";
 import NavigationCell from "../components/NavigationCell.vue";
-import LogoEI from "../components/LogoEIAnimated.vue";
-import LogoOT from "../components/LogoOTAnimated.vue";
+import LogoEI from "../components/LogoEI.vue";
+import LogoOT from "../components/LogoOT.vue";
 import UserMenu from "../components/UserMenu.vue";
+import { isLocal, isOT, isEI } from "../state/host.js";
 import s from "../styles/grid.module.scss";
-
-const _location = document.location;
 </script>

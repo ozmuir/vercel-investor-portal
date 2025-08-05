@@ -45,7 +45,8 @@
 
 <script setup>
 import { NForm, NFormItem, NInput } from "naive-ui";
-import { ref } from "vue";
+import { pick } from "rambda";
+import { ref, watch } from "vue";
 import {
   useChangeEmail,
   useAfter_changeEmail,
@@ -55,9 +56,15 @@ import FormButtons from "../components/Button/FormButtons";
 import FeedBack from "../components/FeedBack.vue";
 import TextMute from "../components/TextMute.vue";
 import messages from "../messages.json";
+import { sessionRef } from "../state/session";
 import { lock } from "../state/ui";
 
-const createModel = () => ({ email: "" });
+const picker = pick(["email"]);
+const createModel = () => picker(sessionRef.value?.profile || {});
+watch(sessionRef, (session) => {
+  modelRef.value = createModel();
+});
+
 const rules = {
   email: [
     {

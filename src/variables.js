@@ -51,3 +51,6 @@ export const COLORS_OT = {
   mid: "#999999",
   low: "#444444",
 };
+
+export const SHARE_PRICE_EI_VENTURES = 4.94;
+export const SHARE_PRICE_ORTHOGONAL = 4.2;

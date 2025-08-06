@@ -23,6 +23,8 @@ import {
 } from "../../state/investments";
 import $table from "../../styles/table.module.scss";
 import {
+  ENTITY_OT,
+  ENTITY_EI,
   SHARE_PRICE_EI_VENTURES,
   SHARE_PRICE_ORTHOGONAL,
 } from "../../variables.js";
@@ -42,10 +44,10 @@ const pickers = [
     normalAndDealmaker([
       invt.invt_shares
         ? (
-            (invt.entity_name === "Ei.Ventures, Inc."
-              ? SHARE_PRICE_EI_VENTURES
-              : invt.entity_name === "Orthogonal Thinker, Inc."
+            (invt.entity_name === ENTITY_OT
               ? SHARE_PRICE_ORTHOGONAL
+              : invt.entity_name === ENTITY_EI
+              ? SHARE_PRICE_EI_VENTURES
               : 0) * invt.invt_shares
           ).toLocaleString("en-US", {
             style: "currency",
@@ -54,10 +56,10 @@ const pickers = [
         : null,
       invt.invt_shares_dm
         ? (
-            (invt.entity_name === "Ei.Ventures, Inc."
-              ? SHARE_PRICE_EI_VENTURES
-              : invt.entity_name === "Orthogonal Thinker, Inc."
+            (invt.entity_name === ENTITY_OT
               ? SHARE_PRICE_ORTHOGONAL
+              : invt.entity_name === ENTITY_EI
+              ? SHARE_PRICE_EI_VENTURES
               : 0) * invt.invt_shares_dm
           ).toLocaleString("en-US", {
             style: "currency",

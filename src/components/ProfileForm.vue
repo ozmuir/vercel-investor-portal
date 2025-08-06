@@ -113,7 +113,7 @@ async function _submit(values) {
         placeholder=""
       />
     </NFormItem>
-    <NFormItem path="address" label="Physical address">
+    <NFormItem path="address" label="Address">
       <NInput
         required
         type="text"

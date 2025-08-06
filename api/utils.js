@@ -119,6 +119,7 @@ export const bodyParser = (req) => {
 const SENDER_EMAIL = "investors@ei.ventures";
 const SENDER_NAME = "Ei.Ventures Investor Portal";
 const sender = makeAddress(SENDER_EMAIL, SENDER_NAME);
+const LABEL_ID = "Investor Portal";
 
 async function sendEmail(
   recipient,
@@ -149,15 +150,33 @@ async function sendEmail(
   //   },
   // });
 
-  const sendResponse = await gmail.users.messages.send({
-    userId: "me",
-    requestBody: {
-      raw,
-      threadId: threadInfo.threadId || undefined,
-      labelIds: ["SENT", "UNREAD", "Investor Portal"], // cannot add UNREAD this way
-    },
-  });
-  const { id: gmailMessageId, threadId } = sendResponse.data;
+  const threadId = threadInfo.threadId || undefined;
+  const labelIds = [/* "SENT", "UNREAD", */ LABEL_ID]; // CAN NOT add UNREAD this way
+
+  // Trying to send with threadId. If it is removed, sending without it.
+  const sendResponse = await gmail.users.messages
+    .send({
+      userId: "me",
+      requestBody: { raw, labelIds, threadId },
+    })
+    .catch((err) => {
+      if (err.code === 404 && threadId) {
+        console.error("Missing thread while sending:", err.message);
+        return gmail.users.messages.send({
+          userId: "me",
+          requestBody: { raw, labelIds },
+        });
+      }
+      if (err.code === 400 && err.message?.includes(LABEL_ID)) {
+        console.error("Missing or invalid label while sending:", err.message);
+        return gmail.users.messages.send({
+          userId: "me",
+          requestBody: { raw, threadId },
+        });
+      }
+      throw err;
+    });
+  const { id: gmailMessageId, threadId: newThreadId } = sendResponse.data;
 
   // NOTE: The email is sent at this point. However, do not end
   // the response right away, only do it when everything is finished,
@@ -168,6 +187,7 @@ async function sendEmail(
   // Sometimes label modification needs <.5s cooldown to be effective
   // await sleep(500);
 
+  // Add UNREAD
   const modifyResponse = await gmail.users.messages.modify({
     userId: "me",
     id: gmailMessageId,
@@ -189,7 +209,7 @@ export const emailHeaders = {
   header_message_id: "Message-ID",
   header_in_reply_to: "In-Reply-To",
   header_references: "References",
-  // such header does not exist, but we will populate the column manually:
+  // the header "X-Gmail-Thread-ID" does not exist, but we will populate the column "gmail_thread_id" manually:
   gmail_thread_id: "X-Gmail-Thread-ID",
 };
 
@@ -325,7 +345,8 @@ export const createAdminClient = () =>
 
 const RECEIVED =
   "We’ve received your request and are currently processing it. Please allow us some time to review.";
-const REPLY = "Update your request on the Investor Portal, or reply to this email to continue your request.";
+const REPLY =
+  "Update your request on the Investor Portal, or reply to this email to continue your request.";
 
 const template_html = (subject, htmlBody) => `
 <html lang="en">

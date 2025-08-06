@@ -20,7 +20,7 @@ export default [
   },
   {
     date: "2025-07-08T19:20:33.277Z",
-    title: "Welcome to the Ei.Ventures Investor Portal!",
+    title: "Welcome to the Orthogonal Thinker and Ei.Ventures Investor Portal!",
     body: h(Fragment, [
       p("You can now:"),
       h("ul", [

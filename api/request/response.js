@@ -48,7 +48,7 @@ export default async function handler(req, res) {
   // Update request
   const resultRequestUpdate = await adminClient
     .from("requests")
-    .update({ res_status, res_note })
+    .update({ res_note })
     .eq("id", req_id);
   if (resultRequestUpdate.error) {
     res.status(400).json({
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
   // SEND MAIL
   const threadInfo = await getThreadInfo(req_id, adminClient);
   const { raw, headers } = await sendEmail_forResponse(
-    { ...payload, profile, req_id },
+    { profile, req_id, res_status, res_note },
     threadInfo
   );
 

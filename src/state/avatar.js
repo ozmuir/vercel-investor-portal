@@ -17,8 +17,6 @@ const colorsOT = {
   shape3Color: COLORS_OT.low.slice(1),
 };
 
-console.log({ colorsEI, colorsOT });
-
 watch(sessionRef, (session) => {
   const email = session?.user?.email.toLowerCase();
   if (!email) return;
@@ -27,7 +25,7 @@ watch(sessionRef, (session) => {
       seed: digest,
       size: 32,
       backgroundColor: "transparent",
-      ...(isEI ? colorsEI : colorsOT),
+      ...(isOT ? colorsOT : isEI ? colorsEI : {}),
     });
     avatarUrlRef.value = `https://api.dicebear.com/9.x/shapes/svg?${params}`;
     // https://www.dicebear.com/how-to-use/http-api/

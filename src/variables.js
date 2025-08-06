@@ -52,6 +52,8 @@ export const COLORS_OT = {
   low: "#444444",
 };
 
+export const NAME_OT = "Orthogonal Thinker";
+export const NAME_EI = "Ei.Ventures";
 export const ENTITY_OT = "Orthogonal Thinker, Inc.";
 export const ENTITY_EI = "Ei.Ventures, Inc.";
 export const SHARE_PRICE_EI_VENTURES = 4.94;

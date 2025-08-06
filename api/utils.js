@@ -114,10 +114,12 @@ export const bodyParser = (req) => {
   return parse(req.url, true).query;
 };
 
-// The sender email and name should be the same as at
+// The sender domain (and preferably, the name) must be as at:
 // https://supabase.com/dashboard/project/_/auth/smtp
-const SENDER_EMAIL = "investors@ei.ventures";
-const SENDER_NAME = "Ei.Ventures Investor Portal";
+// The sender domain must be authorized at the SMTP provider:
+// https://app.mailersend.com/domains/65qngkdvxwolwr12
+const SENDER_EMAIL = "investors@orthogonalthinker.com";
+const SENDER_NAME = "Orthogonal Investor Portal";
 const sender = makeAddress(SENDER_EMAIL, SENDER_NAME);
 const LABEL_ID = "Investor Portal";
 

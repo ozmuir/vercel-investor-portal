@@ -26,7 +26,7 @@ export const ROUTE_REQUEST_EDIT = "Edit request";
 export const ROUTE_ADMIN_REQUESTS = "Admin | Requests";
 
 // import LayoutHomePage from "../layouts/HomePage";
-import { isOT, isEI } from "../state/host.js";
+import { isOT, isEI } from "../state/environment.js";
 import ViewAccount from "../views/Account";
 import ViewAdminRequests from "../views/Admin/Requests.vue";
 import ViewInvestmentList from "../views/InvestmentList";
@@ -41,11 +41,10 @@ import ViewRequestNew from "../views/Request/New.vue";
 import ViewSignIn from "../views/SignIn";
 import messages from "../messages.json";
 import { truthy } from "../utils/index.js";
+import { ENTITY_EI, ENTITY_OT } from "../variables.js";
 
 const withSuffix = (text) =>
-  [text, isOT ? "Orthogonal Thinker" : isEI ? "Ei.Ventures" : ""]
-    .filter(truthy)
-    .join(" - ");
+  [text, isOT ? ENTITY_OT : isEI ? ENTITY_EI : ""].filter(truthy).join(" - ");
 
 export default [
   {

@@ -1,7 +1,7 @@
 import { ref, watch } from "vue";
 import { sessionRef } from "../state/session.js";
 import { digestMessage } from "../utils/index.js";
-import { isOT, isEI } from "../state/host.js";
+import { isOT, isEI } from "../state/environment.js";
 import { COLORS_EI, COLORS_OT } from "../variables.js";
 
 export const avatarUrlRef = ref("");

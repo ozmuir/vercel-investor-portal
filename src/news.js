@@ -1,4 +1,5 @@
 import { Fragment, h } from "vue";
+import { NAME_OT, NAME_EI } from "./variables.js";
 
 const p = (it) => h("p", it);
 
@@ -20,7 +21,7 @@ export default [
   },
   {
     date: "2025-07-08T19:20:33.277Z",
-    title: "Welcome to the Orthogonal Thinker and Ei.Ventures Investor Portal!",
+    title: `Welcome to the ${NAME_OT} and ${NAME_EI} Investor Portal!`,
     body: h(Fragment, [
       p("You can now:"),
       h("ul", [

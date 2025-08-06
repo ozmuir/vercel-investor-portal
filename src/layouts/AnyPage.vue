@@ -48,6 +48,6 @@ import NavigationCell from "../components/NavigationCell.vue";
 import LogoEI from "../components/LogoEI.vue";
 import LogoOT from "../components/LogoOT.vue";
 import UserMenu from "../components/UserMenu.vue";
-import { isLocal, isOT, isEI } from "../state/host.js";
+import { isLocal, isOT, isEI } from "../state/environment.js";
 import s from "../styles/grid.module.scss";
 </script>

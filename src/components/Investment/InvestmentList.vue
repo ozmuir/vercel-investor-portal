@@ -28,6 +28,7 @@ import {
   SHARE_PRICE_EI_VENTURES,
   SHARE_PRICE_ORTHOGONAL,
 } from "../../variables.js";
+import { renderInvestmentName } from "../render.js";
 
 const labels = [
   messages.investment.holder_name,
@@ -90,8 +91,7 @@ onMounted(() => {
         <b>Note:</b> The address and phone number on the investments cannot be
         changed at this time. However, you can provide a new address and phone
         number in
-        <RouterLink :to="{ name: ROUTE_SETTINGS }"
-          >Account Settings</RouterLink
+        <RouterLink :to="{ name: ROUTE_SETTINGS }">Account Settings</RouterLink
         >, and we will use that if needed.
       </div>
       <NTable :bordered="true" :single-line="true" :class="$table.table">
@@ -105,12 +105,8 @@ onMounted(() => {
             <tr>
               <td :colspan="labels.length">
                 <div style="display: flex; justify-content: space-between">
-                  <div>
-                    <!-- <span class="inline">{{ messages.investment.name }}:</span> -->
-                    <!-- <b class="inline">{{ investment.entity_name }} {{ investment.invt_name }}</b> -->
-                    {{ investment.entity_name }}
-                    <br />
-                    {{ investment.invt_name }}
+                  <div class="flex-col">
+                    <component :is="renderInvestmentName(investment)" />
                   </div>
                   <div class="text-small faded">
                     <span class="inline valign-middle">ID: </span>

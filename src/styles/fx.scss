@@ -51,8 +51,8 @@
 }
 
 .faded {
-  opacity: 0.5;
-  transition: opacity var(--fx_duration) linear;
+  opacity: 0.75;
+  transition: opacity var(--fx_duration_1_2) linear;
 }
 .faded:hover,
 .faded:focus,

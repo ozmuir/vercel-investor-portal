@@ -76,7 +76,7 @@ export const formatDateLong = (ISO_8601) =>
   new Date(ISO_8601).toLocaleString("en-US");
 
 export const formatInvestmentName = (invt) =>
-  `${invt.entity_name} - ${invt.invt_name} (${invt.invt_shares || invt.invt_shares_dm})`;
+  `${invt.entity_name} - ${invt.invt_name} (${invt.invt_shares || invt.invt_shares_dm} shs)`;
 
 export const zip = (...rows) =>
   rows[0].map((_, c) => rows.map((row) => row[c]));

@@ -39,8 +39,9 @@ import { ROUTE_INVESTOR } from "../../routing/routes.js";
 import { sessionRef } from "../../state/session.js";
 import { lock } from "../../state/ui.js";
 import $table from "../../styles/table.module.scss";
-import { formatDateLong, formatInvestmentName } from "../../utils";
+import { formatDateLong } from "../../utils";
 import { LENGTH_MAX_RESPONSE_NOTE } from "../../variables.js";
+import { renderInvestmentName } from "../../components/render.js";
 
 const pageRef = ref(1);
 const setPage = (value) => (pageRef.value = value);
@@ -90,11 +91,7 @@ const pickers = [
     ]),
   (request) =>
     h(Fragment, [
-      h(
-        "a",
-        { class: "inline", href: `mailto:${request.email}` },
-        request.email
-      ),
+      renderEllipsis(request.email),
       renderCopyButton(request.email, { class: "inline" }),
     ]),
   (request) => formatDateLong(request.created_at),
@@ -107,11 +104,10 @@ const pickers = [
     h(
       Fragment,
       // Fragment MUST receive an Array
-      (request.investments || []).map(
-        (invt) =>
-          h(NTag, { key: invt.id, size: "small" }, () =>
-            formatInvestmentName(invt)
-          )
+      (request.investments || []).map((invt) =>
+        h(NTag, { key: invt.id, size: "small" }, () =>
+          renderInvestmentName(invt)
+        )
       )
     ),
   (request) =>

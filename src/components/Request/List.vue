@@ -22,7 +22,8 @@ import {
   requestsLoad,
 } from "../../state/requests";
 import $table from "../../styles/table.module.scss";
-import { formatDateLong, formatInvestmentName } from "../../utils";
+import { formatDateLong } from "../../utils";
+import { renderInvestmentName } from "../render.js";
 
 const labels = [
   // "",
@@ -58,7 +59,7 @@ const pickers = [
       // Fragment MUST receive an Array
       (request.investments || []).map((invt) =>
         h(NTag, { key: invt.id, size: "small" }, () =>
-          formatInvestmentName(invt)
+          renderInvestmentName(invt)
         )
       )
     ),

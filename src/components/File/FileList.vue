@@ -61,8 +61,9 @@ import messages from "../../messages.json";
 import { filesRef, filesLoadingRef, filesLoad } from "../../state/files";
 import { lock } from "../../state/ui";
 import $table from "../../styles/table.module.scss";
-import { formatBytes, formatDateLong, formatInvestmentName } from "../../utils";
+import { formatBytes, formatDateLong } from "../../utils";
 import FeedBack from "../FeedBack.vue";
+import { renderInvestmentName } from "../render";
 
 const labels = ["", "Name", "Size", "Added", "Related Investments", "Comment"];
 
@@ -86,7 +87,9 @@ const pickers = [
       Fragment,
       // Fragment MUST receive an Array
       (file.investments || []).map((invt) =>
-        h(NTag, { key: invt.id, size: "small" }, () => formatInvestmentName(invt))
+        h(NTag, { key: invt.id, size: "small" }, () =>
+          renderInvestmentName(invt)
+        )
       )
     ),
   (file) => h(NText, { depth: 3, class: "text-small" }, () => file.comment),

@@ -15,7 +15,7 @@ import TableLabels from "../../components/TableLabels.vue";
 import TableSeparator from "../../components/TableSeparator.vue";
 import { normalAndDealmaker } from "../../components/normalAndDealmaker.js";
 import messages from "../../messages.json";
-import { ROUTE_REQUEST_NEW } from "../../routing";
+import { ROUTE_SETTINGS, ROUTE_REQUEST_NEW } from "../../routing";
 import {
   investmentsRef,
   investmentsLoadingRef,
@@ -86,6 +86,14 @@ onMounted(() => {
   </div>
   <div v-else>
     <div v-if="investmentsRef.length" :class="$table.table_container">
+      <div>
+        <b>Note:</b> The address and phone number on the investments cannot be
+        changed at this time. However, you can provide a new address and phone
+        number in
+        <RouterLink :to="{ name: ROUTE_SETTINGS }"
+          >Account Settings</RouterLink
+        >, and we will use that if needed.
+      </div>
       <NTable :bordered="true" :single-line="true" :class="$table.table">
         <thead>
           <tr>

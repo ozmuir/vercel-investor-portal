@@ -15,7 +15,7 @@ export const ROUTE_NOT_FOUND = "Not Found";
 export const ROUTE_HOME = "Home";
 export const ROUTE_INVESTOR = "Investor Portal";
 export const ROUTE_INVESTOR_SIGN_IN = "Log In";
-export const ROUTE_INVESTOR_ACCOUNT = "Account";
+export const ROUTE_SETTINGS = "Account";
 export const ROUTE_INVESTMENT_LIST = "Investments";
 export const ROUTE_FILE_LIST = "Documents";
 export const ROUTE_FILE_NEW = "Upload Documents";
@@ -27,18 +27,18 @@ export const ROUTE_ADMIN_REQUESTS = "Admin | Requests";
 
 // import LayoutHomePage from "../layouts/HomePage";
 import { isOT, isEI } from "../state/environment.js";
-import ViewAccount from "../views/Account";
+import ViewSettings from "../views/Settings.vue";
 import ViewAdminRequests from "../views/Admin/Requests.vue";
-import ViewInvestmentList from "../views/InvestmentList";
-import ViewInvestorsPortal from "../views/InvestorsPortal";
+import ViewInvestmentList from "../views/InvestmentList.vue";
+import ViewInvestorsPortal from "../views/InvestorsPortal.vue";
 import ViewFileList from "../views/File/List.vue";
 import ViewFileNew from "../views/File/New.vue";
 // import ViewHome from "../views/Home.vue";
-import ViewNotFound from "../views/NotFound";
+import ViewNotFound from "../views/NotFound.vue";
 import ViewRequestEdit from "../views/Request/Edit.vue";
 import ViewRequestList from "../views/Request/List.vue";
 import ViewRequestNew from "../views/Request/New.vue";
-import ViewSignIn from "../views/SignIn";
+import ViewSignIn from "../views/SignIn.vue";
 import messages from "../messages.json";
 import { truthy } from "../utils/index.js";
 import { ENTITY_EI, ENTITY_OT } from "../variables.js";
@@ -76,8 +76,8 @@ export default [
   },
   {
     path: PATH_INVESTOR_ACCOUNT,
-    name: ROUTE_INVESTOR_ACCOUNT,
-    component: ViewAccount,
+    name: ROUTE_SETTINGS,
+    component: ViewSettings,
     meta: {
       title: withSuffix(messages.meta.title.investor_account),
     },

@@ -86,14 +86,10 @@ onMounted(() => {
     {{ messages.progress.loading }} <Loader type="pulse" />
   </div>
   <div v-else>
-    <div v-if="investmentsRef.length" :class="$table.table_container">
-      <div>
-        <b>Note:</b> The address and phone number on the investments cannot be
-        changed at this time. However, you can provide a new address and phone
-        number in
-        <RouterLink :to="{ name: ROUTE_SETTINGS }">Account Settings</RouterLink
-        >, and we will use that if needed.
-      </div>
+    <div
+      v-if="investmentsRef.length"
+      :class="[$table.table_container, 'flex-col', 'gap-1']"
+    >
       <NTable :bordered="true" :single-line="true" :class="$table.table">
         <thead>
           <tr>
@@ -108,7 +104,7 @@ onMounted(() => {
                   <div class="flex-col">
                     <component :is="renderInvestmentName(investment)" />
                   </div>
-                  <div class="text-small faded">
+                  <div class="text-small muted">
                     <span class="inline valign-middle">ID: </span>
                     <b class="inline valign-middle">
                       <Ellipsis class="inline valign-middle">
@@ -134,6 +130,14 @@ onMounted(() => {
           </template>
         </tbody>
       </NTable>
+      <div class="text-small muted">
+        <b>Note:</b> The address and phone number on the investments cannot be
+        changed at this time. However, you can provide a new address and phone
+        number in
+        <RouterLink :to="{ name: ROUTE_SETTINGS }" class="fx_underline"
+          >Account Settings</RouterLink
+        >, and we will use that if needed.
+      </div>
     </div>
     <template v-else>
       <NEmpty :description="messages.empty.investments" class="empty" />

@@ -50,14 +50,22 @@
   background-attachment: fixed !important;
 }
 
-.faded {
+.muted {
   opacity: 0.75;
   transition: opacity var(--fx_duration_1_2) linear;
 }
-.faded:hover,
-.faded:focus,
-.faded:active {
+.muted:hover,
+.muted:focus,
+.muted:active {
   opacity: 1;
+}
+
+.underline {
+  text-decoration: underline;
+}
+.underline:hover,
+.underline:focus {
+  text-decoration: none;
 }
 
 .fx_outline--padding {
@@ -139,8 +147,8 @@
   border-bottom: 1px solid currentColor;
 
   opacity: 0.25;
-  right: 25%;
-  width: 50%;
+  right: 0%;
+  width: 100%;
 
   --duration: var(--fx_duration);
   transition: opacity var(--duration) linear, right var(--duration) ease-out,
@@ -150,8 +158,8 @@
 .fx_underline:focus::after,
 .fx_underline:active::after {
   opacity: 1;
-  right: 0;
-  width: 100%;
+  right: 50%;
+  width: 0%;
 }
 
 .fx_zoom_in {

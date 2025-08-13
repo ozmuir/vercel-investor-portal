@@ -2,7 +2,7 @@ import { Fragment, h } from "vue";
 
 export const renderInvestmentName = (invt) =>
   h(Fragment, [
-    h("span", { class: "faded" }, invt.entity_name),
+    h("span", { class: "muted" }, invt.entity_name),
     h(
       "span",
       {},

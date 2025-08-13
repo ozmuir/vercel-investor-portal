@@ -7,9 +7,8 @@
       access the portal.
     </template>
     <template v-else>
-      <Heading as="h2">{{ messages.heading.news }}</Heading>
-      <News />
       <Actions />
+      <News />
     </template>
   </div>
 </template>
@@ -19,10 +18,8 @@ defineOptions({ name: "V_Investors" });
 
 import Actions from "../components/Actions.vue";
 import News from "../components/News.vue";
-import Heading from "../components/Heading.vue";
 import Loader from "../components/Loader.vue";
-import messages from "../messages.json";
-import { ROUTE_INVESTOR, ROUTE_INVESTOR_SIGN_IN } from "../routing";
+import { ROUTE_INVESTOR_SIGN_IN } from "../routing";
 import { sessionRef } from "../state/session";
 import ButtonLink from "../components/Button/ButtonLink.vue";
 </script>

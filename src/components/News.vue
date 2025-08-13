@@ -1,41 +1,37 @@
 <template>
-  <!-- <NTable
-    :bordered="false"
-    :bottom-bordered="false"
-    :single-column="true"
-    :single-line="true"
-    :class="[$table.transparent, 'text-small']"
-  >
-    <tbody> -->
-  <template v-for="item in news" :key="item.title">
-    <!-- <tr>
-          <td> -->
-    <NThing class="text-small text-left">
-      <template #header>
-        <div class="text-small">
-          <b>{{ formatDateShort(item.date) }}</b>
-          <br />
-          {{ item.title }}
-        </div>
-      </template>
-      <!-- <Collapse :lines="2"> -->
-      <component :is="item.body" />
-      <!-- </Collapse> -->
-    </NThing>
-    <!-- </td>
-        </tr> -->
-  </template>
-  <!-- </tbody>
-  </NTable> -->
+  <NList>
+    <template #header>
+      <Heading as="h2">{{ messages.heading.news }}</Heading>
+    </template>
+    <!--
+    <template #footer>
+      <RouterLink :to="{ name: ROUTE_NEWS }">More</RouterLink>
+    </template>
+    -->
+    <NListItem v-for="item in news" :key="item.title" style="padding: 1rem">
+      <NThing :title="item.title" class="text-small text-left">
+        <template #header>
+          <div class="flex-col text-small">
+            <b>{{ formatDateShort(item.date) }}</b>
+            <div>{{ item.title }}</div>
+          </div>
+        </template>
+        <!-- <Collapse :lines="2"> -->
+        <component :is="item.body" />
+        <!-- </Collapse> -->
+      </NThing>
+    </NListItem>
+  </NList>
 </template>
 
 <script setup>
 defineOptions({ name: "CNews" });
 
-import { NTable, NThing } from "naive-ui";
+import { NList, NListItem, NThing } from "naive-ui";
 // import Collapse from "../components/Collapse";
+import Heading from "../components/Heading.vue";
 import news from "../news.js";
-import $table from "../styles/table.module.scss";
+import messages from "../messages.json";
 import { formatDateShort } from "../utils";
 
 const onerem = parseFloat(getComputedStyle(document.documentElement).fontSize);

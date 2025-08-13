@@ -13,6 +13,7 @@ const PATH_ADMIN_REQUESTS = `${PATH_ADMIN}/requests`;
 
 export const ROUTE_NOT_FOUND = "Not Found";
 export const ROUTE_HOME = "Home";
+export const ROUTE_NEWS = "News";
 export const ROUTE_INVESTOR = "Investor Portal";
 export const ROUTE_INVESTOR_SIGN_IN = "Log In";
 export const ROUTE_SETTINGS = "Account";

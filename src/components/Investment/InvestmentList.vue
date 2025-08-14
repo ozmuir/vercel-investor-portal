@@ -28,9 +28,10 @@ import {
   SHARE_PRICE_EI_VENTURES,
   SHARE_PRICE_ORTHOGONAL,
 } from "../../variables.js";
-import { renderInvestmentName } from "../render.js";
+import { renderDealmaker, renderInvestmentName } from "../render.js";
 
 const labels = [
+  "",
   messages.investment.holder_name,
   messages.investment.holder_address,
   messages.investment.amount_paid,
@@ -39,41 +40,43 @@ const labels = [
 ];
 
 const pickers = [
-  (invt) => normalAndDealmaker([invt.holder_name, invt.holder_name_dm]),
-  (invt) => normalAndDealmaker([invt.holder_address, invt.holder_address_dm]),
+  () => "",
+  (invt) => invt.holder_name,
+  (invt) => invt.holder_address,
   (invt) =>
-    normalAndDealmaker([
-      invt.invt_shares
-        ? (
-            (invt.entity_name === ENTITY_OT
-              ? SHARE_PRICE_ORTHOGONAL
-              : invt.entity_name === ENTITY_EI
-              ? SHARE_PRICE_EI_VENTURES
-              : 0) * invt.invt_shares
-          ).toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-          })
-        : null,
-      invt.invt_shares_dm
-        ? (
-            (invt.entity_name === ENTITY_OT
-              ? SHARE_PRICE_ORTHOGONAL
-              : invt.entity_name === ENTITY_EI
-              ? SHARE_PRICE_EI_VENTURES
-              : 0) * invt.invt_shares_dm
-          ).toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-          })
-        : null,
-    ]),
+    invt.invt_shares
+      ? (
+          (invt.entity_name === ENTITY_OT
+            ? SHARE_PRICE_ORTHOGONAL
+            : invt.entity_name === ENTITY_EI
+            ? SHARE_PRICE_EI_VENTURES
+            : 0) * invt.invt_shares
+        ).toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })
+      : null,
+  (invt) => invt.invt_shares?.toLocaleString("en-US"),
+];
+
+const pickers_dm = [
+  () => renderDealmaker(),
+  (invt) => invt.holder_name_dm,
+  (invt) => invt.holder_address_dm,
   (invt) =>
-    normalAndDealmaker([
-      invt.invt_shares?.toLocaleString("en-US"),
-      invt.invt_shares_dm?.toLocaleString("en-US"),
-    ]),
-  // (investment) => h(InfoPopover, () => h(InvestmentMeta, { investment })),
+    invt.invt_shares_dm
+      ? (
+          (invt.entity_name === ENTITY_OT
+            ? SHARE_PRICE_ORTHOGONAL
+            : invt.entity_name === ENTITY_EI
+            ? SHARE_PRICE_EI_VENTURES
+            : 0) * invt.invt_shares_dm
+        ).toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })
+      : null,
+  (invt) => invt.invt_shares_dm?.toLocaleString("en-US"),
 ];
 
 onMounted(() => {
@@ -119,11 +122,18 @@ onMounted(() => {
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr v-if="investment.invt_shares">
               <TableCells
                 :contents="investment"
                 :labels="labels"
                 :pickers="pickers"
+              />
+            </tr>
+            <tr v-if="investment.invt_shares_dm">
+              <TableCells
+                :contents="investment"
+                :labels="labels"
+                :pickers="pickers_dm"
               />
             </tr>
             <TableSeparator />

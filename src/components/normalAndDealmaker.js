@@ -14,7 +14,7 @@ export const normalAndDealmaker = ([item1, item2]) =>
           src: dealmakerIconSrc,
           width: "128",
           height: "128",
-          alt: "DealMaker Logo",
+          alt: "DealMaker Icon",
           style: "width: 1em; height: 1em",
         },
       ],

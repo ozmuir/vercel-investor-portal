@@ -26,7 +26,7 @@ import dealmakerIconSrc from "../assets/dealmaker-icon.svg";
     src: '/dealmaker-icon.svg',
     width: '128',
     height: '128',
-    alt: 'DealMaker Logo',
+    alt: 'DealMaker Icon',
   }"
 />
 

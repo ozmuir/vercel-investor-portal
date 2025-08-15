@@ -30,11 +30,10 @@ export const ROUTE_ADMIN_REQUESTS = "Admin | Requests";
 import { isOT, isEI } from "../state/environment.js";
 import ViewSettings from "../views/Settings.vue";
 import ViewAdminRequests from "../views/Admin/Requests.vue";
+import ViewHome from "../views/Home.vue";
 import ViewInvestmentList from "../views/InvestmentList.vue";
-import ViewInvestorsPortal from "../views/InvestorsPortal.vue";
 import ViewFileList from "../views/File/List.vue";
 import ViewFileNew from "../views/File/New.vue";
-// import ViewHome from "../views/Home.vue";
 import ViewNotFound from "../views/NotFound.vue";
 import ViewRequestEdit from "../views/Request/Edit.vue";
 import ViewRequestList from "../views/Request/List.vue";
@@ -51,8 +50,7 @@ export default [
   {
     path: PATH_HOME,
     name: ROUTE_HOME,
-    // component: ViewHome,
-    component: ViewInvestorsPortal,
+    component: ViewHome,
     meta: {
       // title: messages.meta.title.home,
       title: withSuffix(messages.meta.title.investors_portal),
@@ -62,7 +60,7 @@ export default [
   {
     path: PATH_INVESTOR,
     name: ROUTE_INVESTOR,
-    component: ViewInvestorsPortal,
+    component: ViewHome,
     meta: {
       title: withSuffix(messages.meta.title.investors_portal),
     },

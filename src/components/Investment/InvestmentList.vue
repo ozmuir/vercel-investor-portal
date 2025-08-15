@@ -2,18 +2,18 @@
 defineOptions({ name: "C_Investments" });
 
 import { IconRequest } from "../../components/icons.js";
-import { NEmpty, NTable } from "naive-ui";
+import { NEmpty } from "naive-ui";
 import { h, onMounted } from "vue";
 import ButtonLink2 from "../../components/Button/ButtonLink2.vue";
 import CopyButton from "../../components/Button/CopyButton.vue";
 import Ellipsis from "../../components/Ellipsis.vue";
 import InfoPopover from "../../components/InfoPopover.vue";
+import MyTable from "../../components/Table.vue";
 // import InvestmentMeta from "../../components/Investment/InvestmentMeta.vue";
 import Loader from "../../components/Loader.vue";
 import TableCells from "../../components/TableCells.vue";
 import TableLabels from "../../components/TableLabels.vue";
-import TableSeparator from "../../components/TableSeparator.vue";
-import { normalAndDealmaker } from "../../components/normalAndDealmaker.js";
+import TableRowSeparator from "../../components/TableRowSeparator.vue";
 import messages from "../../messages.json";
 import { ROUTE_SETTINGS, ROUTE_REQUEST_NEW } from "../../routing";
 import {
@@ -93,7 +93,7 @@ onMounted(() => {
       v-if="investmentsRef.length"
       :class="[$table.table_container, 'flex-col', 'gap-1']"
     >
-      <NTable :bordered="true" :single-line="true" :class="$table.table">
+      <MyTable>
         <thead>
           <tr>
             <TableLabels :labels="labels" />
@@ -102,7 +102,8 @@ onMounted(() => {
         <tbody>
           <template v-for="investment in investmentsRef" :key="investment.id">
             <tr>
-              <td :colspan="labels.length">
+              <td></td>
+              <td :colspan="-1 + labels.length">
                 <div style="display: flex; justify-content: space-between">
                   <div class="flex-col">
                     <component :is="renderInvestmentName(investment)" />
@@ -129,17 +130,18 @@ onMounted(() => {
                 :pickers="pickers"
               />
             </tr>
-            <tr v-if="investment.invt_shares_dm">
+            <!-- TODO Gradually removing Dialmaker records from the database -->
+            <tr v-else-if="investment.invt_shares_dm">
               <TableCells
                 :contents="investment"
                 :labels="labels"
                 :pickers="pickers_dm"
               />
             </tr>
-            <TableSeparator />
+            <TableRowSeparator :colspan="labels.length" />
           </template>
         </tbody>
-      </NTable>
+      </MyTable>
       <div class="text-small muted">
         <b>Note:</b> The address and phone number on the investments cannot be
         changed at this time. However, you can provide a new address and phone

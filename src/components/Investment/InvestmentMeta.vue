@@ -1,5 +1,5 @@
 <template>
-  <NTable :bottom-bordered="false" :bordered="false" size="small">
+  <MyTable>
     <tbody>
       <template
         v-for="[label, value] in [['Record ID', investment.id]]"
@@ -11,11 +11,10 @@
         </tr>
       </template>
     </tbody>
-  </NTable>
+  </MyTable>
 </template>
 
 <script setup>
 defineProps({ investment: Object });
-
-import { NTable } from "naive-ui";
+import MyTable from "../../components/Table.vue";
 </script>

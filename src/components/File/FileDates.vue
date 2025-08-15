@@ -5,7 +5,7 @@
         <NIcon><IconInfo /></NIcon>
       </NButton>
     </template>
-    <NTable :bottom-bordered="false" :bordered="false" size="small">
+    <MyTable>
       <tbody>
         <template
           v-for="item in [
@@ -21,14 +21,15 @@
           </tr>
         </template>
       </tbody>
-    </NTable>
+    </MyTable>
   </NPopover>
 </template>
 
 <script setup>
 defineProps({ file: Object });
 
+import { NButton, NIcon, NPopover } from "naive-ui";
+import MyTable from "../../components/Table.vue";
 import { IconInfo } from "../../components/icons.js";
-import { NButton, NIcon, NPopover, NTable } from "naive-ui";
 import { formatDateLong } from "../../utils";
 </script>

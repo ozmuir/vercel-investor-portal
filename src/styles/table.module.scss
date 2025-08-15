@@ -25,9 +25,12 @@
 
 .table th {
   vertical-align: middle;
+  border: 0;
 }
 .table td {
   vertical-align: top;
+  border-bottom: 0;
+  background-clip: padding-box;
 }
 
 .table button {

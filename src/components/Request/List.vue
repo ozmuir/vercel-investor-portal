@@ -1,7 +1,8 @@
 <script setup>
 defineOptions({ name: "CompRequestList" });
 
-import { NCheckbox, NCheckboxGroup, NEmpty, NTable, NTag } from "naive-ui";
+import { NCheckbox, NCheckboxGroup, NEmpty, NTag } from "naive-ui";
+import MyTable from "../../components/Table.vue";
 import { Fragment, h, ref, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 import Heading from "../../components/Heading.vue";
@@ -124,7 +125,7 @@ onMounted(() => {
       @update:value="handleCheckboxChange"
       :class="$table.table_container"
     >
-      <NTable :bordered="true" :single-line="true" :class="$table.table">
+      <MyTable>
         <thead>
           <tr>
             <TableLabels :labels="labels" />
@@ -158,7 +159,7 @@ onMounted(() => {
             </tr>
           </template>
         </tbody>
-      </NTable>
+      </MyTable>
     </NCheckboxGroup>
   </div>
 </template>

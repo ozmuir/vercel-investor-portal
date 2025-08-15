@@ -10,9 +10,6 @@ import {
   NIcon,
   NInput,
   NModal,
-  NPagination,
-  // NSelect,
-  NTable,
   NTag,
   useMessage,
 } from "naive-ui";
@@ -32,13 +29,14 @@ import RequestStatusSelect from "../../components/Request/StatusSelect.vue";
 import RequestPagination from "../../components/Request/Pagination.vue";
 import TableCells from "../../components/TableCells.vue";
 import TableLabels from "../../components/TableLabels.vue";
-import TableSeparator from "../../components/TableSeparator.vue";
+import TableRowSeparator from "../../components/TableRowSeparator.vue";
 import { IconStatus } from "../../components/icons.js";
 import { renderEllipsis } from "../../components/ellipsis.js";
 import { ROUTE_INVESTOR } from "../../routing/routes.js";
 import { sessionRef } from "../../state/session.js";
 import { lock } from "../../state/ui.js";
 import $table from "../../styles/table.module.scss";
+import MyTable from "../../components/Table.vue";
 import { formatDateLong } from "../../utils";
 import { LENGTH_MAX_RESPONSE_NOTE } from "../../variables.js";
 import { renderInvestmentName } from "../../components/render.js";
@@ -262,7 +260,7 @@ async function onSelectChange(request_id, status) {
         @update:page-size="setPerPage($event)"
       />
       <NCheckboxGroup :class="$table.table_container">
-        <NTable :bordered="true" :single-line="true" :class="$table.table">
+        <MyTable>
           <thead>
             <tr>
               <th></th>
@@ -302,10 +300,10 @@ async function onSelectChange(request_id, status) {
                   </div>
                 </td>
               </tr>
-              <TableSeparator />
+              <TableRowSeparator :colspan="1 + labels.length" />
             </template>
           </tbody>
-        </NTable>
+        </MyTable>
       </NCheckboxGroup>
       <RequestPagination
         :page="pageRef"

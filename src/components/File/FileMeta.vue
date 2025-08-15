@@ -1,5 +1,5 @@
 <template>
-  <NTable :bottom-bordered="false" :bordered="false" size="small">
+  <MyTable>
     <tbody>
       <template
         v-for="item in [
@@ -22,7 +22,7 @@
         </tr>
       </template>
     </tbody>
-  </NTable>
+  </MyTable>
 </template>
 
 <script setup>
@@ -31,5 +31,5 @@ defineProps({
     type: Object,
   },
 });
-import { NTable } from "naive-ui";
+import MyTable from "../../components/Table.vue";
 </script>

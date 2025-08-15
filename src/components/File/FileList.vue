@@ -16,7 +16,7 @@
       @update:value="handleCheckboxChange"
       :class="$table.table_container"
     >
-      <NTable :bordered="true" :single-line="true" :class="$table.table">
+      <MyTable>
         <thead>
           <tr>
             <TableLabels :labels="labels" />
@@ -33,7 +33,7 @@
             </tr>
           </template>
         </tbody>
-      </NTable>
+      </MyTable>
     </NCheckboxGroup>
     <FeedBack :success="successRef" :error="errorRef" />
   </template>
@@ -53,6 +53,7 @@ import { filesDelete } from "../../actions/storage";
 // import FileDates from "../../components/File/FileDates";
 import FileListActions from "../../components/File/FileListActions";
 // import FileMeta from "../../components/File/FileMeta";
+import MyTable from "../../components/Table.vue";
 import FileOpener from "../../components/File/FileOpener";
 import TableCells from "../../components/TableCells.vue";
 import TableLabels from "../../components/TableLabels.vue";
